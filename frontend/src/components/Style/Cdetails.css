@@ -1,0 +1,37 @@
+.detailscont {
+    width: 100%;
+    min-height: 100vh;
+    background-color: RGB(240, 242, 245);
+  }
+  .det {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  .valueSt {
+    width: 350px;
+    margin: 30px;
+  }
+  .pd {
+    padding: 5px;
+  }
+  .mg {
+    margin-left: 10px;
+  }
+  .cen {
+    text-align: center;
+    font-weight: bold;
+
+  }
+  .tof {
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+  }
+  .fx {
+    display: flex;
+    justify-content: space-between;
+    /* align-items: center; */
+    margin: 5px 0;
+  }

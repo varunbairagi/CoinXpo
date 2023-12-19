@@ -1,0 +1,49 @@
+.flt{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+      rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin-top: 15px;
+    /* line-height: 20px; */
+}
+.flt h2{
+    font-size: 1.4rem;
+}
+.flt span,select,option{
+    font-size: .8rem;
+
+}
+.flt select{
+    border: 2px solid black;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: inherit;
+    margin-left: 10px;
+    
+
+}
+.flt option{
+    font-size: .8rem;
+    background-color: rgb(238, 231, 253);
+}
+.flt span{
+    font-weight: bold;
+}
+i{
+    color: black;
+    font-size: 20px;
+    /* padding-right: 40px; */
+}
+i:hover{
+    cursor: pointer;
+}
+
+.pnl{
+    position: relative;
+    left: -20px;
+    z-index: 0;
+/* padding-left: -10px; */
+}

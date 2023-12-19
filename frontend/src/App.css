@@ -1,0 +1,27 @@
+.main{
+  /* display: flex; */
+  /* flex-direction: row; */
+  /* flex-wrap: wrap; */
+  /* align-items: center; */
+  /* justify-content: flex-start; */
+  /* width: 100vw;
+  position: fixed; */
+  /* position: relative; */
+}
+.sub-main{
+  /* height: 90vh; */
+}
+.hm{
+  background-color: rgb(244, 239, 239);
+  height: inherit;
+}
+.navbar{
+  background-color: rgb(28, 28, 123);
+}
+.logo{
+  min-width: 20px;
+  max-width: 50px;
+}
+.logo img{
+  width: inherit;
+}

@@ -1,0 +1,50 @@
+.main-coin{
+    margin: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+.cont{
+    margin: 10px;
+    padding-top: 10px;
+    height: 200px;
+    width: 200px;
+    background-color: white;
+    box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
+    /* background-color: blueviolet; */
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    
+}
+.pic img{
+    width: 40px;
+    border-radius: 50%;
+}
+.cont span{
+    padding-left: 5px;
+    font-size: .9rem;
+}
+.btn button{
+    background-color: rgb(222, 227, 222);
+    /* border: 2px solid rgb(117, 249, 68);
+    border: 1px solid rgb(255, 108, 108); */
+    cursor: pointer;
+    font-size: .8rem;
+    margin-top: 10px;
+    border-radius: 10px;
+    padding:5px 10px;
+    font-weight: bold;
+}
+.btn button:hover{
+    background-color: rgb(117, 249, 68);
+    border:2px solid black;
+    color: azure;
+    color: black;
+}
+.red{
+    color: red;
+}
+.green{
+    color: green;
+}

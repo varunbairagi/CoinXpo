@@ -1,18 +1,29 @@
 import React,{useState} from "react";
 // import logo from "../log-crypto.png"
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { data } from "../tdata";
-import "./Style/Nav.css"
+import "./Style/N.css"
 const Nav = ({}) => {
-  const [dis,setDis]=useState('bk');
   const[val,setVal]=useState("")
+  const[ham,setHam]=useState("nn");
+  const[mag,setMag]=useState("nn")
   const[filtered,setFiltered]=useState()
-  const set=()=>{
-    if(dis==='bk') setDis('nn')
-    else setDis("bk")
-  console.log(dis)
+  // const smag=()=>{
+  //   mag=='nn'?setMag("blk"):setMag("nn")
+    
+  // }
+  const shw=()=>{
+      ham==="nn"?setHam("blk"):setHam("nn")
+      mag=='nn'?setMag("blk"):setMag("nn")
+      
   }
-  
+  const key=(e)=>{
+    console.log(e.key)
+    if(e.key==='Enter') {
+      if(ham=='blk'){
+      shw()}
+    }
+  }
   const Filter=()=>{
      setFiltered(data.coins.filter(function (res) { return res.name.toLowerCase().includes(val)}))
      console.log(filtered)
@@ -30,8 +41,67 @@ const Nav = ({}) => {
     <>
         
         
+        <div className="nav-cont">
+      <div className="cont-1">
 
-<nav className="nav bg-white border-gray-200 dark:bg-gray-900">
+        <div className="img-div">
+          <img src="https://flowbite.com/docs/images/logo.svg" alt="logo" />
+          <p>CoinXpo</p>
+        </div>
+        <div className="lks">
+          <ul>
+          <NavLink to='/'>
+            <li>Home</li>
+          </NavLink>
+          <NavLink to='/allcoins'>
+            <li>CryptoCurrecies</li>
+          </NavLink>
+          <NavLink to='/marketcap'>
+            <li>MarketCap</li>
+          </NavLink>
+          <NavLink to='/about'>            
+            <li>About</li>
+          </NavLink>
+          </ul>
+        </div>
+        <div className="icn-cont">
+            <div className="icn">
+            <i class="fa-solid fa-magnifying-glass"/>
+              <input type="text" name="cname" id="cname" placeholder="Search here" onChange={input} onKeyDown={key}/> 
+            </div>
+            <i id='mag' className="fa-solid fa-magnifying-glass px-2 py-3 hover:text-blue-700" onClick={()=>shw()}/>
+          <i className="fa-solid fa-cart-shopping px-3 py-3 hover:text-blue-700" />
+          <i className="fa-solid fa-user px-3 py-3 hover:text-blue-700" />
+          <i id="hamb" className={`fa-solid fa-bars px-3 py-3 hover:text-blue-700`} onClick={()=>shw()}/>
+        </div>
+      </div>
+      <div className={`icn-2 ${mag}`}>
+            <i class="fa-solid fa-magnifying-glass"/>
+              <input type="text" name="cname" id="cname" placeholder="Search here" onChange={input} onKeyDown={key}/> 
+            </div>
+      <div className={`cont-2 ${ham}`}>
+      
+      <div className='lks-2'>
+          <ul onClick={()=>shw()}>
+          <NavLink to='/'>
+            <li>Home</li>
+          </NavLink>
+          <NavLink to='/allcoins'>
+            <li>CryptoCurrecies</li>
+          </NavLink>
+          <NavLink to='/marketcap'>
+            <li>MarketCap</li>
+          </NavLink>
+          <NavLink to='/about'>            
+            <li>About</li>
+          </NavLink>
+          </ul>
+        </div>
+      </div>
+      </div>
+
+
+{/* <nav className="nav bg-white border-gray-200 dark:bg-gray-900">
   <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
   <Link to='/' className="flex items-center space-x-3 rtl:space-x-reverse">
       <img src="https://flowbite.com/docs/images/logo.svg" className="h-8" alt="Flowbite Logo" />
@@ -89,7 +159,7 @@ const Nav = ({}) => {
       </ul>
     </div>
   </div>
-</nav>
+</nav> */}
 
 
 

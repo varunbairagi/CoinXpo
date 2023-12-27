@@ -1,28 +1,31 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import logo from "../log-crypto.png"
+// import { useNavigate } from 'react-router-dom'
+// import logo from "../log-crypto.png"
 import millify from "millify"
-import { Link,NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 const Ccard = ({cData,id}) => {
-  const navigate=useNavigate();
+  // const navigate=useNavigate();
   // console.log(cData.name)
   // const {name,uuid}=cData;
 
   const [clr,setClr]=useState('red')
-  useEffect(()=>{if(cData.change>0) setClr('green')},[cData])
+  const setColr=()=>{
+    if(cData.change>0) {setClr('green'); }
+  }
+  useEffect(()=>setColr(),[])
   // if(cData?.change>0) setClr('green')
 
-  const jump=()=>{
-    // navigate(`/${cData.name}`)
-    console.log("yes")
-    // navigate(`/allcoins/${cData.name}`)
-  }
+  // const jump=()=>{
+  //   navigate(`/${cData.name}`)
+  //   console.log("yes")
+  //   navigate(`/allcoins/${cData.name}`)
+  // }
   return (
     <>
         <div className='cont flex flex-col hover:border-black'>
       <div className='im flex px-3 justify-between'>
-        <span className='uppercase font-bold'>{cData.name}</span>
+        <span className='uppercase font-bold'>{id+1} {cData.name}</span>
         <div className='pic'>
         <img src={cData.iconUrl} alt="" />
         </div>
@@ -38,12 +41,14 @@ const Ccard = ({cData,id}) => {
       </div>
       <div className='my-1 flex justify-start px-3'>
         <span>Daily Change:</span>
-        <span className={`font-bold ${clr} `}>{cData.change}</span>
+        <span className="font-bold" style={{color:`${clr}`}} >{ clr==="green"?`+${cData.change}`:cData.change
+          
+          }</span>
       </div>
-      <NavLink to={`/allcoins/${id}/${cData.name}`}>
+      <NavLink to={`/allcoins/${id+1}/${cData.name}`}>
       <div className='btn flex justify-center align-middle'>
 
-        <button onClick={jump} >More Details</button>
+        <button  >More Details</button>
       </div>
       </NavLink>
     </div>

@@ -1,0 +1,78 @@
+.cart-main{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
+}
+.details{
+    margin:30px 20px ;
+    width: 25vw;
+}
+.details .fx {
+    display: flex;
+    justify-content: space-between;
+    /* align-items: center; */
+    margin: 5px 0;
+  }
+.details button{
+    background-color: rgb(88, 108, 255);
+    width: inherit;
+    padding: 10px;
+    margin-top: 5px;
+    font-size: 1.1rem;
+    /* color: wheat; */
+    font-weight: bold;
+    border: 2px solid black;
+}
+.details button:hover{
+    background-color: black;
+    color: rgb(88, 108, 255);
+    border: 2px solid rgb(88, 108, 255);
+}
+.cart-div{
+    display: flex;
+    height: 85vh;
+    width: 60vw;
+    margin: 20px 40px;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+.cart-card{
+    /* max-width: 550px; */
+    background-color: rgb(196, 193, 199);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: 
+    center;
+    margin: 5px;
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.cart-card p{
+    /* padding-left: 20px; */
+}
+.cart-card input{
+    width: 20px;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px;
+    margin:0px 10px;
+    background-color: white;
+}
+.cart-card i:hover{
+    color: red;
+}
+.cart-card:hover{
+    background-color: rgb(144, 140, 147);;
+}
+.cart-div h2{
+    max-width: 100%;
+    background-color: rgb(89, 89, 89);
+    padding: 10px 30px;
+    margin-bottom: 10px;
+    color: white;
+    font-weight: bold;
+}

@@ -7,16 +7,18 @@ import "./Style/Cdetails.css"
 import { fetchSignleCData } from '../store/singleCSlice';
 import { useSelector,useDispatch } from 'react-redux';
 import { setLoader } from '../store/singleCSlice';
+import { addPro } from '../store/cartSlice';
 
 const Cdeails = ({cData}) => {
 
     const[id,setId]=useState("")
     const {cname,cid}=useParams()
     const dispatch=useDispatch()
-
+    const cd=useSelector((state)=>state.cartData.data[0])
     
     // const data=cData.filter((res,i)=>cid==i?res:0) "Qwsogvtv82FCd"
     // console.log(cid,cData)
+    //Get single coin data
     const data=useSelector((state)=>state.singleCData.cSData.coin)
     // console.log(data)
     const isLoading=useSelector((state)=>state.singleCData.isLoading)
@@ -38,7 +40,10 @@ const Cdeails = ({cData}) => {
       
     },[id])
     
-
+    const addC=()=>{
+      dispatch(addPro(data));
+      // console.log(cd)
+    }
   return (
     <>
 
@@ -53,8 +58,8 @@ const Cdeails = ({cData}) => {
                 {data.name} price in US Dollar (USD). View value statistics,
                 market cap and supply.
               </h5>
-              {/* {!isLogin&&
-                <button style={{ margin: "5px",fontSize:".8rem" }} onClick={setVal}>Buy Now</button>} */}
+              {/* {!isLogin&&} */}
+                <button style={{ padding: "5px",fontSize:".8rem",border:"2px solid black" }} onClick={addC}>Buy Now</button>
             </div>
             <div className="det">
               <div className="valueSt">
@@ -69,6 +74,9 @@ const Cdeails = ({cData}) => {
                   </div>
                   <div className="fx">
                     <h4>Rank</h4> <h3>{data.rank}</h3>
+                  </div>
+                  <div className="fx">
+                    <h4>Price</h4> <h3>{parseFloat(data.price).toFixed(2)}</h3>
                   </div>
                   <div className="fx">
                     <h4>24h Volume</h4> <h3>$456</h3>

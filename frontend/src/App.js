@@ -15,17 +15,23 @@ import Cdeails from "./components/Cdeails";
 import { fetchFinalData } from "./store/coindSlice";
 import { useSelector, useDispatch } from "react-redux";
 import N from "./components/N";
-
+import Logpage from "./components/Logpage";
+import Signup from "./components/Signup";
+import Cart from "./components/Cart";
 function App() {
   // const dispatch = useDispatch();
-
   // const isLoading = useSelector((state) => state.coinData.isLoading);
   // const data = useSelector((state) => state.coinData.data);
-
-  // useEffect(() => {
-
-  //   dispatch(fetchFinalData());
-  // }, [dispatch]);
+  const getd=async()=>{
+    try{const result=await fetch('http://localhost:8080/')
+    const res=await result.json()
+    console.log(res)
+    }catch(e){console.error(e)}
+  }
+  useEffect(() => {
+getd()
+    // dispatch(fetchFinalData());
+  }, []);
 
   const isLoading = false;
 
@@ -56,6 +62,9 @@ function App() {
                 element={<Cdeails isLoading={isLoading} cData={data.coins} />}
               />
               <Route exact path="/na" element={<N/>}/>
+              <Route exact path="/login" element={<Logpage/>}/>
+              <Route exact path="/signup" element={<Signup/>}/>
+              <Route exact path="/cart" element={<Cart/>}/>
             </Routes>
           </div>
         )}

@@ -1,12 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { dltPro } from "../store/cartSlice";
+import { dltPro,setAmt } from "../store/cartSlice";
 const CartCard = ({ cd ,id}) => {
     const[qunt,setQunt]=useState(1);
-    console.log(qunt)
+    // const[amt,setamt]=useState(cd.price);
+    // console.log(qunt)
     const dispatch=useDispatch()
     const dlt=(uuid)=>{
         dispatch(dltPro(uuid))
+    }
+    useEffect(()=>{
+      dispatch(setAmt( parseFloat(cd.price).toFixed(2)))
+      
+    },[])
+    const handleamt=(e)=>{
+      let val=e.target.value-qunt;
+      console.log(val)
+      // if(val,)
+      setQunt(e.target.value)
+      dispatch(setAmt( val*cd.price))
+      
+      
     }
   return (
     <>
@@ -17,8 +31,8 @@ const CartCard = ({ cd ,id}) => {
                 <p>Price: ${parseFloat(cd.price).toFixed(2)}</p>
                 
                 <p>Qnty</p>
-                <input type="text" value={qunt} name="quant" id="quant" placeholder='Q' onChange={(e)=>setQunt(e.target.value)}/>
-                <p>Amount: ${parseFloat(cd.price).toFixed(2)*qunt}</p>
+                <input type="text" value={qunt} name="quant" id="quant" placeholder='Q' onChange={handleamt}/>
+                <p>Amount: ${parseFloat(cd.price*qunt).toFixed(2)}</p>
                 <i className="fa-solid fa-trash"onClick={()=>dlt(cd.uuid)}/>
       </div>
     </>

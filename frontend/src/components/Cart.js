@@ -5,7 +5,8 @@ import CartCard from './CartCard'
 const Cart = () => {
 
       const cd1=useSelector((state)=>state.cartData.data)
-    console.log(cd1)
+      const amt=useSelector((state)=>state.cartData.final_amount)
+    // console.log(cd1)
     
   return (
     <>
@@ -23,11 +24,11 @@ const Cart = () => {
         <hr />
             <div className='fx'>
               <h2>Total Price :</h2>
-              <h4>$ 525</h4>
+            <h4>$ {parseFloat(amt).toFixed(2)}</h4>
             </div>
             <div className='fx'>
               <h2>Extra Charges :</h2>
-              <h4>$ 525</h4>
+              <h4>$ 2</h4>
             </div>
             <div className='fx'>
               <h2>final Price :</h2>

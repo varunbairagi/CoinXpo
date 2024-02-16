@@ -8,7 +8,7 @@ import Marketcap from "./components/Marketcap";
 import "./App.css";
 // import logo from './log-crypto.png'
 import Nav from "./components/Nav";
-import { data } from "./tdata";
+// import { data } from "./tdata";
 import Footer from "./components/Footer";
 import { setData } from "./store/coindSlice";
 import Cdeails from "./components/Cdeails";
@@ -22,20 +22,31 @@ function App() {
   // const dispatch = useDispatch();
   // const isLoading = useSelector((state) => state.coinData.isLoading);
   // const data = useSelector((state) => state.coinData.data);
-  const getd=async()=>{
-    try{const result=await fetch('http://localhost:8080/')
-    const res=await result.json()
-    console.log(res)
-    }catch(e){console.error(e)}
-  }
+  const[data,setFdata]=useState([]);
+  const[isLoading,setIsLoading]=useState(true)
+  // let isLoading = true;
+
   useEffect(() => {
-getd()
+    const getd = async () => {
+      // isLoading=true;
+
+      try {
+        const result = await fetch("http://localhost:8080/");
+        const res = await result.json();
+        console.log(res);
+        setFdata(res)
+        setIsLoading(false)
+      } catch (e) {
+        console.error(e);
+        setIsLoading(true)
+
+      }
+    };
+    getd();
     // dispatch(fetchFinalData());
   }, []);
 
-  const isLoading = false;
-
-  console.log(data);
+  // console.log(data);
 
   return (
     <>
@@ -61,10 +72,10 @@ getd()
                 path="/allcoins/:cid/:cname"
                 element={<Cdeails isLoading={isLoading} cData={data.coins} />}
               />
-              <Route exact path="/na" element={<N/>}/>
-              <Route exact path="/login" element={<Logpage/>}/>
-              <Route exact path="/signup" element={<Signup/>}/>
-              <Route exact path="/cart" element={<Cart/>}/>
+              <Route exact path="/na" element={<N />} />
+              <Route exact path="/login" element={<Logpage />} />
+              <Route exact path="/signup" element={<Signup />} />
+              <Route exact path="/cart" element={<Cart />} />
             </Routes>
           </div>
         )}

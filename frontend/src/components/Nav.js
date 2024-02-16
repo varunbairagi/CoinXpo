@@ -129,7 +129,7 @@ const Nav = ({}) => {
               <NavLink to="/">
                 <li>Home</li>
               </NavLink>
-              <NavLink to="/allcoins">
+              <NavLink to="/allcoins" >
                 <li>CryptoCurrecies</li>
               </NavLink>
               <NavLink to="/marketcap">

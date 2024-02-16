@@ -23,6 +23,7 @@ const check=()=>{
         <div class="col-left">
             <div class="login-text">
                 <h2>Welcome!</h2>
+                <p>Create your account.<br/>For Free!</p>
               <p>Sign Up Here</p>
                 
             </div>

@@ -25,13 +25,13 @@ const Cdeails = ({cData}) => {
     const getId=()=>{
       
       // cData.filter((res,i)=>cid==i?setId(res.uuid):0)
-      cData.find((res,i)=>cid==i?setId(res.uuid):0)
+      cData.find((res,i)=>cid-1==i?setId(res.uuid):0)
       // console.log(id)
 
       dispatch(setLoader(true))
       if(isNaN(id)){
 
-        dispatch(fetchSignleCData(id))
+        dispatch(fetchSignleCData(id,cname))
       }
     }
     // getId()

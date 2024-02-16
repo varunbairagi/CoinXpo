@@ -34,7 +34,7 @@ const Logpage = () => {
         <div class="col-left">
             <div class="login-text">
                 <h2>Welcome!</h2>
-              <Link to="/signup">  <p>Create your account.<br/>For Free!</p></Link>
+              <Link to="/signup">  <p>Login Here</p></Link>
                 
             </div>
         </div>

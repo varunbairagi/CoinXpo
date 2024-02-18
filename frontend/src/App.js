@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import Loading from "./components/Loading";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes,withRouter } from "react-router-dom";
 import Homepage from "./components/Homepage";
 import Cryptocurrencies from "./components/Cryptocurrencies";
 import Marketcap from "./components/Marketcap";
@@ -10,6 +10,7 @@ import "./App.css";
 import Nav from "./components/Nav";
 // import { data } from "./tdata";
 import Footer from "./components/Footer";
+
 import { setData } from "./store/coindSlice";
 import Cdeails from "./components/Cdeails";
 import { fetchFinalData } from "./store/coindSlice";
@@ -31,7 +32,9 @@ function App() {
       // isLoading=true;
 
       try {
-        const result = await fetch("http://localhost:8080/");
+        // const result = await fetch("http://localhost:8080/db");
+        const result = await fetch("/api/auth");
+
         const res = await result.json();
         console.log(res);
         setFdata(res)
@@ -68,7 +71,7 @@ function App() {
                 path="/allcoins"
                 element={<Cryptocurrencies coins={data.coins} />}
               />
-              <Route
+              <Route exact
                 path="/allcoins/:cid/:cname"
                 element={<Cdeails isLoading={isLoading} cData={data.coins} />}
               />

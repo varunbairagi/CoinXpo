@@ -14,31 +14,33 @@ const Cdeails = ({cData}) => {
     const[id,setId]=useState("")
     const {cname,cid}=useParams()
     const dispatch=useDispatch()
-    const cd=useSelector((state)=>state.cartData.data[0])
+    // const cd=useSelector((state)=>state.cartData.data[0])
     
+    // console.log(cname)
     // const data=cData.filter((res,i)=>cid==i?res:0) "Qwsogvtv82FCd"
     // console.log(cid,cData)
     //Get single coin data
     const data=useSelector((state)=>state.singleCData.cSData.coin)
     // console.log(data)
     const isLoading=useSelector((state)=>state.singleCData.isLoading)
-    const getId=()=>{
-      
-      // cData.filter((res,i)=>cid==i?setId(res.uuid):0)
-      cData.find((res,i)=>cid-1==i?setId(res.uuid):0)
-      // console.log(id)
-
-      dispatch(setLoader(true))
-      if(isNaN(id)){
-
-        dispatch(fetchSignleCData(id,cname))
-      }
-    }
+    
     // getId()
     useEffect(()=>{
+      const getId=()=>{
+      
+        // cData.filter((res,i)=>cid==i?setId(res.uuid):0)
+        cData.find((res,i)=>cid-1==i?setId(res.uuid):0)
+        // console.log(id)
+  
+        dispatch(setLoader(true))
+        if(isNaN(id)){
+  
+          dispatch(fetchSignleCData(id,cname))
+        }
+      }
       getId()
       
-    },[id])
+    },[id,cid])
     
     const addC=()=>{
       dispatch(addPro(data));

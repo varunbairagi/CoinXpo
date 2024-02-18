@@ -1,10 +1,12 @@
 import React, { useState,useEffect,useContext } from 'react'
 import { Link,useNavigate } from 'react-router-dom';
 import "./Style/login.css"
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Logpage = () => {
 
     // const {setLoginUser,loginuser}=useContext(contextApp)
-    const [id,setId]=useState({"user":"","password":""});
+    const [id,setId]=useState({"email":"","password":""});
     const [loginData,setLoginData]=useState([]);
     
     const navigate=useNavigate();
@@ -17,7 +19,20 @@ const Logpage = () => {
         )
     }
     const check=()=>{
-          console.log(id)
+
+        try {
+            fetch("/api/auth/login",{
+                method:"POST",
+                body:JSON.stringify(id),
+                headers:{
+                    "Content-type":"application/json"
+                }
+            }).then(res=>res.json()).then(rslt=>console.log(rslt))
+            toast.success("login succesfully")
+            console.log(id)
+        } catch (error) {
+            toast.warning(error)
+        }
     //   const login=loginData.filter((val)=>val.username===id.user )
     //     if((id.user===login[0].username)&&(id.password===login[0].password)){
     //         navigate("/");
@@ -45,7 +60,7 @@ const Logpage = () => {
                 <form action="">
                     <p>
                         <label>Enter Username<span>*</span></label>
-                        <input type="text" name='user' onChange={handleChange} placeholder="Username or Email" required/>
+                        <input type="text" name='email' onChange={handleChange} placeholder="Enter Email" required/>
                     </p>
                     <p>
                         <label>Enter Password<span>*</span></label>
@@ -65,6 +80,7 @@ const Logpage = () => {
 
     </div>
 </div>
+<ToastContainer />
     </>
   )
 }

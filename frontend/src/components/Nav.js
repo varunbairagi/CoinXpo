@@ -21,7 +21,7 @@ const Nav = ({}) => {
     mag === "nn" ? setMag("blk") : setMag("nn");
   };
   const key = (e) => {
-    console.log(e.key);
+    // console.log(e.key);
     if (e.key === "Enter") {
       if (ham === "blk") {
         shw();
@@ -29,18 +29,25 @@ const Nav = ({}) => {
     }
   };
   const Filter = () => {
+    // console.log(val)
+    
+  
+  // console.log("hi")
     setFiltered(
       data.coins.filter(function (res) {
         return res.name.toLowerCase().includes(val);
       })
     );
-    console.log(filtered);
+    // console.log(filtered);
   };
   const input = (e) => {
-    setVal(String(e.target.value));
-    Filter();
-    if (val === "") setFiltered(undefined);
-    console.log(val);
+    let value=e.target.value;
+    // console.log(value.length)
+    
+    setVal(String(value));
+    if(value.length>=1) Filter();
+    else setFiltered([])
+    // console.log(val.length);
   };
 
   return (
@@ -82,7 +89,7 @@ const Nav = ({}) => {
               </div>
               <div className="src-coin-1">
                 {filtered &&
-                  filtered.map((res, i) => <Searchresult res={res} key={i} />)}
+                  filtered.map((res, i) => <Searchresult res={res} key={i} setF={setFiltered} onClick={()=>setVal("")}/>)}
               </div>
             </div>
             <i
@@ -98,7 +105,8 @@ const Nav = ({}) => {
             </div>
               </i>
             </NavLink>
-            <i className="fa-solid fa-user px-3 py-3 hover:text-blue-700" />
+            <NavLink to="/signup">
+            <i className="fa-solid fa-user px-3 py-3 hover:text-blue-700" /></NavLink>
             <i
               id="hamb"
               className={`fa-solid fa-bars px-3 py-3 hover:text-blue-700`}

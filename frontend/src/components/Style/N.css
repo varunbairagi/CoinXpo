@@ -155,15 +155,38 @@
     color: white;
     /* left: 60px; */
     top: 0px;
-    right: 40px;
+    right: 50px;
     background-color: red;
     border-radius: 40%;
     padding: 5px;
     height: 20px;
     font-size: .5rem;
 }
+
+.uicn{
+    position: absolute;
+    z-index: 1;
+    top:45px;
+    right:0px;
+    font-weight: bold;
+    background-color: rgb(17, 24, 39);
+    /* border: 2px solid black; */
+    color: white;
+}
+.uicn p{
+    /* transition: 1s ease; */
+    padding: 10px;
+}
+.uicn p:hover{
+    background-color: grey;
+    color: white;
+    cursor: pointer;
+}
 @media screen and (max-width: 768px) {
-    
+    .uicn{
+        right: 10px;
+        font-size: .7rem;
+    }
   .lks,.icn,.src-coin-1 {
     display: none;
   }

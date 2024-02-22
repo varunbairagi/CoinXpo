@@ -5,17 +5,21 @@ import { data } from "../tdata";
 import { useSelector } from "react-redux";
 import "./Style/N.css";
 import Searchresult from "./Searchresult";
+
+import Usercard from "./Usercard";
 const Nav = ({}) => {
   const [val, setVal] = useState("");
   const [ham, setHam] = useState("nn");
   const [mag, setMag] = useState("nn");
   const [filtered, setFiltered] = useState(undefined);
+  const [usri, setUsri] = useState(false);
   // const smag=()=>{
   //   mag=='nn'?setMag("blk"):setMag("nn")
 
   // }
-  const cd1=useSelector((state)=>state.cartData.data)
-
+  const cd1 = useSelector((state) => state.cartData.data);
+  const isLogin = useSelector((state) => state.authData.isLogin);
+  // const isLogin=true
   const shw = () => {
     ham === "nn" ? setHam("blk") : setHam("nn");
     mag === "nn" ? setMag("blk") : setMag("nn");
@@ -30,9 +34,8 @@ const Nav = ({}) => {
   };
   const Filter = () => {
     // console.log(val)
-    
-  
-  // console.log("hi")
+
+    // console.log("hi")
     setFiltered(
       data.coins.filter(function (res) {
         return res.name.toLowerCase().includes(val);
@@ -41,13 +44,17 @@ const Nav = ({}) => {
     // console.log(filtered);
   };
   const input = (e) => {
-    let value=e.target.value;
+    let value = e.target.value;
     // console.log(value.length)
-    
+
     setVal(String(value));
-    if(value.length>=1) Filter();
-    else setFiltered([])
+    if (value.length >= 1) Filter();
+    else setFiltered([]);
     // console.log(val.length);
+  };
+  const togleI = () => {
+    if (usri) setUsri(false);
+    else setUsri(true);
   };
 
   return (
@@ -89,7 +96,14 @@ const Nav = ({}) => {
               </div>
               <div className="src-coin-1">
                 {filtered &&
-                  filtered.map((res, i) => <Searchresult res={res} key={i} setF={setFiltered} onClick={()=>setVal("")}/>)}
+                  filtered.map((res, i) => (
+                    <Searchresult
+                      res={res}
+                      key={i}
+                      setF={setFiltered}
+                      onClick={() => setVal("")}
+                    />
+                  ))}
               </div>
             </div>
             <i
@@ -97,16 +111,38 @@ const Nav = ({}) => {
               className="fa-solid fa-magnifying-glass px-2 py-3 hover:text-blue-700"
               onClick={() => shw()}
             />
-            
+
             <NavLink to="/cart">
-            
-              <i className="fa-solid fa-cart-shopping px-3 py-3 hover:text-blue-700" >
-              <div id="num">{cd1.length}
-            </div>
+              <i className="fa-solid fa-cart-shopping px-3 py-3 hover:text-blue-700">
+                <div id="num">{cd1.length}</div>
               </i>
             </NavLink>
-            <NavLink to="/signup">
-            <i className="fa-solid fa-user px-3 py-3 hover:text-blue-700" /></NavLink>
+            
+
+            {isLogin ? (
+              <> <div>
+              <div>
+                <i
+                  className="fa-solid fa-user px-3 py-3 hover:text-blue-700"
+                  onClick={()=>togleI()}
+                />
+                <NavLink to="/logout">
+                  <i className="fa-solid fa-right-from-bracket" />
+                </NavLink>
+</div>
+                
+                </div>
+              </>
+            ) : (
+              <>
+                <NavLink to="/signup">
+                  <i class="fa-solid fa-user-plus" />
+                </NavLink>
+              </>
+            )}
+            {usri && isLogin && <div className="uicn">
+                    <Usercard/>
+                </div>}
             <i
               id="hamb"
               className={`fa-solid fa-bars px-3 py-3 hover:text-blue-700`}
@@ -137,7 +173,7 @@ const Nav = ({}) => {
               <NavLink to="/">
                 <li>Home</li>
               </NavLink>
-              <NavLink to="/allcoins" >
+              <NavLink to="/allcoins">
                 <li>CryptoCurrecies</li>
               </NavLink>
               <NavLink to="/marketcap">
@@ -150,6 +186,7 @@ const Nav = ({}) => {
           </div>
         </div>
       </div>
+      
     </>
   );
 };

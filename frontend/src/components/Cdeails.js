@@ -8,21 +8,20 @@ import { fetchSignleCData } from '../store/singleCSlice';
 import { useSelector,useDispatch } from 'react-redux';
 import { setLoader } from '../store/singleCSlice';
 import { addPro } from '../store/cartSlice';
-
+import { setCartData } from '../store/cartSlice';
+import axios from 'axios';
 const Cdeails = ({cData}) => {
 
     const[id,setId]=useState("")
     const {cname,cid}=useParams()
     const dispatch=useDispatch()
-    // const cd=useSelector((state)=>state.cartData.data[0])
+    const cd1=useSelector((state)=>state.cartData.data)
     
-    // console.log(cname)
-    // const data=cData.filter((res,i)=>cid==i?res:0) "Qwsogvtv82FCd"
-    // console.log(cid,cData)
     //Get single coin data
     const data=useSelector((state)=>state.singleCData.cSData.coin)
     // console.log(data)
     const isLoading=useSelector((state)=>state.singleCData.isLoading)
+    const User=useSelector(state=>state.authData.user);
     
     // getId()
     useEffect(()=>{
@@ -41,10 +40,29 @@ const Cdeails = ({cData}) => {
       getId()
       
     },[id,cid])
-    
+    // const values=[{uuid:data.uuid,name:data.name,price:parseFloat(data.price).toFixed(2),iconUrl:data.iconUrl}]
+   
+    const updateCart=async()=>{
+
+      try {
+        
+        const res=await fetch(`/api/user/update/65d33025fc364aaf9d8f1822`,{
+          method:"PATCH",headers:{
+            "Content-type":"application/json"
+        },body:JSON.stringify({values:cd1})
+        })
+        console.log(res);
+
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
     const addC=()=>{
       dispatch(addPro(data));
-      // console.log(cd)
+      
+      // dispatch(setCartData())
+      
     }
   return (
     <>

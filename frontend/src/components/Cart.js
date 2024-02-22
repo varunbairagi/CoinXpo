@@ -1,21 +1,30 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import "./Style/Cart.css"
 import CartCard from './CartCard'
-// const getDta=()=>{
-//   let list=JSON.parse(localStorage.getItem("cartI"))
-//   if(list) return list
-//   else return []
-// }
-const localCart=JSON.parse(localStorage.getItem("cartI"))||[]
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from 'react-router-dom';
+import { UseDispatch } from 'react-redux';
+import { setCartData } from '../store/cartSlice';
 const Cart = () => {
-      // const[cd1,setCd1]=useState(localCart)
-
+      const navigate=useNavigate()
+      const dispatch=useDispatch();
       const cd1=useSelector((state)=>state.cartData.data)
+      const isLogin=useSelector(state=>state.authData.isLogin);
       const amt=useSelector((state)=>state.cartData.final_amount)
       const amt1=amt.reduce((sum,el)=>sum+parseFloat(el),0)
-    console.log(amt)
-    
+    // console.log(cd2)
+    const paymt=()=>{
+      if(isLogin){
+        toast.success("Ordered Successfully")
+        // navigate("/")
+        dispatch(setCartData())
+      }
+      else{
+        toast.warning("Please Login")
+      }
+    }
   return (
     <>
         <div className='cart-main'>
@@ -43,9 +52,10 @@ const Cart = () => {
               <h4>$ {parseFloat(amt1+2).toFixed(2)}</h4>
             </div>
             <hr />
-            <button type="submit">Proceed For Payment</button>
+            <button type="submit" onClick={paymt}>Proceed For Payment</button>
           </div>
         </div>
+        <ToastContainer/>
     </>
   )
 }

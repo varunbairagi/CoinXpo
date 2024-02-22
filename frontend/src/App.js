@@ -19,6 +19,9 @@ import N from "./components/N";
 import Logpage from "./components/Logpage";
 import Signup from "./components/Signup";
 import Cart from "./components/Cart";
+import Logout from "./components/Logout";
+import Orderpage from "./components/Orderpage";
+import Profilepage from "./components/Profilepage";
 function App() {
   // const dispatch = useDispatch();
   // const isLoading = useSelector((state) => state.coinData.isLoading);
@@ -33,7 +36,7 @@ function App() {
 
       try {
         // const result = await fetch("http://localhost:8080/db");
-        const result = await fetch("/api/auth");
+        const result = await fetch("http://localhost:8080/db");
 
         const res = await result.json();
         console.log(res);
@@ -75,10 +78,13 @@ function App() {
                 path="/allcoins/:cid/:cname"
                 element={<Cdeails isLoading={isLoading} cData={data.coins} />}
               />
-              <Route exact path="/na" element={<N />} />
+              {/* <Route exact path="/na" element={<N />} /> */}
+              <Route exact path="/order" element={<Orderpage/>}/>
+              <Route exact path="/user" element={<Profilepage/>}/>
               <Route exact path="/login" element={<Logpage />} />
               <Route exact path="/signup" element={<Signup />} />
               <Route exact path="/cart" element={<Cart />} />
+              <Route exact path="/logout" element={<Logout/>} />
             </Routes>
           </div>
         )}

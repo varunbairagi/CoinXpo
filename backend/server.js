@@ -2,20 +2,36 @@ const path = require('path')
 require('dotenv').config({ path: path.resolve(__dirname, '../.env') })
 const express=require("express")
 const cors=require("cors")
-const router=require("./router/auth-router")
+const auth_router=require("./router/auth-router")
+const cart_router=require("./router/cart_router")
 const {MongoClient}=require("mongodb")
 const connectDB=require("./utils/db")
+bodyParser = require('body-parser');
 const app=express()
 
 app.use(express.json())
-app.use("/api/auth",router)
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.urlencoded({extended:false}))
+app.use(function(req, res, next){
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, accept, access-control-allow-origin');
+
+  if ('OPTIONS' == req.method) res.sendStatus(200);
+  else next();
+});
+app.use(cors())
+app.options('*', cors());
 app.use(cors({
-  origin:"http://localhost:3000",
+  origin:"*",
+  "Access-Control-Allow-Headers":"Origin, X-Requested-With, Content-Type, Accept, Authorization",
 }));
+
 let dburl=`mongodb+srv://varun-db:varun@atlascluster.gioplqo.mongodb.net/?retryWrites=true&w=majority`;
 
-
+app.use("/api/auth",auth_router)
+app.use("/api/user",cart_router)
 
 
 connectDB()

@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema({
 //before saving data we encrypt pssswd
 userSchema.pre("save", async function (next) {
   const user = this;
-  console.log("pre" + this);
+  // console.log("pre" + this);
   if (!user.isModified("password")) {
       next();
     }
